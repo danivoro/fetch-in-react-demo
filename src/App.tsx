@@ -1,23 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [joke, setJoke] = useState<string>();
+  const [jokes, setJokes] = useState<string[]>([]);
 
   const handleGetJoke = async () => {
-    const response = await fetch(
-      "https://dog.ceo/api/breed/hound/images/random",
-    );
+    const response = await fetch("https://dog.ceo/api/breed/hound/images/random");
     const jsonBody = await response.json();
-    setJoke(jsonBody.message);
+    setJokes((prevJokes) => [...prevJokes, jsonBody.message]);
   };
 
-  if (joke) {
+  if (jokes.length > 0) {
     return (
       <div>
         <h1>Joke app</h1>
-        <img src={joke} alt="dog pic"></img>
-        <hr />
+        {jokes.map((joke, index) => (
+        <img src={joke} alt={`dog pic ${index}`} key={index} />
+      ))}
         <button onClick={handleGetJoke}>Get another pic</button>
       </div>
     );
