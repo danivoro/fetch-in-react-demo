@@ -13,7 +13,7 @@ function App() {
   if (jokes.length > 0) {
     return (
       <div>
-        <h1>Joke app</h1>
+        <h1>Dog app</h1>
         {jokes.map((joke, index) => (
         <img src={joke} alt={`dog pic ${index}`} key={index} />
       ))}
@@ -28,7 +28,7 @@ function App() {
           Click the button to trigger a <code>fetch</code> that gets a random
           dog picture from an API!
         </p>
-        <button onClick={handleGetJoke}>Get joke</button>
+        <button onClick={handleGetJoke}>Get dog pic</button>
       </div>
     );
   }
